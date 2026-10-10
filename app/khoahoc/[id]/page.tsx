@@ -1,299 +1,167 @@
-export type Course = {
-  id: number;
-  title: string;
-  level: string;
-  description: string;
-  longDescription: string;
-  lessons: number;
-  duration: string; // ví dụ: "8 tuần"
-  weeks: number;
-  color: string;
-  badge: string;
-  icon: string;
-  phase: string; // Giai đoạn trong lộ trình 12 tháng
-  features: string[];
-  curriculum: { week: number; title: string; lessons: string[] }[];
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { getCourseById } from "@/data/courses";
+
+type Props = {
+  params: Promise<{ id: string }>;
 };
 
-export const courses: Course[] = [
-  {
-    id: 1,
-    title: "Tiếng Anh từ mất gốc",
-    level: "Beginner",
-    description: "Xây nền tảng từ vựng, ngữ pháp, phát âm và câu giao tiếp cơ bản.",
-    longDescription:
-      "Khóa học dành cho người mất gốc. Tập trung từ vựng thiết yếu, ngữ pháp căn bản, phát âm chuẩn và các mẫu câu giao tiếp đơn giản. AI sẽ sửa lỗi ngay khi bạn nói.",
-    lessons: 48,
-    duration: "8 tuần",
-    weeks: 8,
-    color: "from-sky-500 to-blue-400",
-    badge: "Nền tảng",
-    icon: "🌱",
-    phase: "Giai đoạn 1 • Tháng 1–2",
-    features: [
-      "Từ vựng & ngữ pháp căn bản",
-      "Luyện phát âm với AI",
-      "48 bài học + bài kiểm tra cuối tuần",
-      "Chuỗi ngày học liên tiếp (streak)",
-      "Theo dõi tiến độ rõ ràng",
-    ],
-    curriculum: [
-      { week: 1, title: "Chào hỏi & Số đếm", lessons: ["Hello & Goodbye", "Số từ 1–100", "Giới thiệu tên"] },
-      { week: 2, title: "Gia đình & Màu sắc", lessons: ["Từ vựng gia đình", "Màu sắc", "This/That"] },
-      { week: 3, title: "Thời gian & Ngày tháng", lessons: ["Days of the week", "Telling time", "Months"] },
-      { week: 4, title: "Động từ to be & Have", lessons: ["Am/Is/Are", "Have/Has", "Câu phủ định"] },
-      { week: 5, title: "Thức ăn & Đồ uống", lessons: ["Food vocabulary", "Ordering food", "Likes & Dislikes"] },
-      { week: 6, title: "Nơi chốn & Hướng dẫn", lessons: ["Places in town", "Asking for directions", "Prepositions"] },
-      { week: 7, title: "Công việc & Sở thích", lessons: ["Jobs", "Hobbies", "Can/Can't"] },
-      { week: 8, title: "Ôn tập & Kiểm tra", lessons: ["Review tuần 1–7", "Speaking test", "Final quiz"] },
-    ],
-  },
-  {
-    id: 2,
-    title: "Giao tiếp cơ bản",
-    level: "Beginner",
-    description: "Chào hỏi, giới thiệu, mua sắm, hỏi đường, du lịch – giao tiếp đời sống.",
-    longDescription:
-      "Sau khi có nền tảng, bạn sẽ luyện các tình huống giao tiếp thực tế: chào hỏi, giới thiệu, mua sắm, hỏi đường, đi du lịch. Mỗi ngày luyện nói với AI và nhận góp ý ngay.",
-    lessons: 48,
-    duration: "8 tuần",
-    weeks: 8,
-    color: "from-blue-500 to-cyan-400",
-    badge: "Phổ biến",
-    icon: "🗣️",
-    phase: "Giai đoạn 2 • Tháng 3–4",
-    features: [
-      "Tình huống đời sống thực tế",
-      "Luyện nói hàng ngày với AI",
-      "48 bài học + kiểm tra cuối tuần",
-      "Phản hồi phát âm & ngữ pháp",
-      "Mở khóa bài học theo tiến độ",
-    ],
-    curriculum: [
-      { week: 1, title: "Chào hỏi & Giới thiệu", lessons: ["Greetings", "Self-introduction", "Small talk"] },
-      { week: 2, title: "Mua sắm", lessons: ["At the store", "Asking price", "Bargaining"] },
-      { week: 3, title: "Hỏi đường", lessons: ["Directions", "Public transport", "Landmarks"] },
-      { week: 4, title: "Nhà hàng & Café", lessons: ["Ordering food", "Making requests", "Paying the bill"] },
-      { week: 5, title: "Du lịch", lessons: ["At the airport", "Hotel check-in", "Sightseeing"] },
-      { week: 6, title: "Sức khỏe & Khẩn cấp", lessons: ["At the doctor", "Describing symptoms", "Emergency"] },
-      { week: 7, title: "Bạn bè & Gia đình", lessons: ["Talking about family", "Making plans", "Invitations"] },
-      { week: 8, title: "Ôn tập & Role-play", lessons: ["Full conversation practice", "Role-play test", "Final assessment"] },
-    ],
-  },
-  {
-    id: 3,
-    title: "Giao tiếp nâng cao",
-    level: "Intermediate",
-    description: "Thảo luận, kể chuyện, trình bày ý kiến – nói tự nhiên hơn.",
-    longDescription:
-      "Khóa học giúp bạn nói dài hơn, tự tin hơn trong thảo luận, kể chuyện và trình bày ý kiến. Phù hợp người đã giao tiếp cơ bản và muốn lên mức tự nhiên.",
-    lessons: 72,
-    duration: "12 tuần",
-    weeks: 12,
-    color: "from-purple-500 to-pink-400",
-    badge: "Hot",
-    icon: "💼",
-    phase: "Giai đoạn 3 • Tháng 5–6",
-    features: [
-      "Thảo luận & trình bày ý kiến",
-      "Kể chuyện và storytelling",
-      "72 bài học chuyên sâu",
-      "Feedback fluency từ AI",
-      "Bài kiểm tra định kỳ",
-    ],
-    curriculum: [
-      { week: 1, title: "Expressing Opinions", lessons: ["I think / In my opinion", "Agree & Disagree", "Giving reasons"] },
-      { week: 2, title: "Storytelling", lessons: ["Past simple storytelling", "Sequencing words", "Describing events"] },
-      { week: 3, title: "Discussion Skills", lessons: ["Turn-taking", "Interrupting politely", "Summarizing"] },
-      { week: 4, title: "Work Conversations", lessons: ["Meetings", "Giving updates", "Asking for clarification"] },
-      { week: 5, title: "Describing People & Places", lessons: ["Appearance", "Personality", "Cities & Culture"] },
-      { week: 6, title: "Hypothetical Situations", lessons: ["If clauses", "Imagining future", "Advice"] },
-      { week: 7, title: "Debating Basics", lessons: ["Pros & Cons", "Supporting arguments", "Counter-arguments"] },
-      { week: 8, title: "Presentations", lessons: ["Structure", "Signposting language", "Q&A practice"] },
-      { week: 9, title: "Idioms & Natural Phrases", lessons: ["Common idioms", "Phrasal verbs", "Colloquial expressions"] },
-      { week: 10, title: "Fluency Drills", lessons: ["Timed speaking", "Paraphrasing", "Filler words reduction"] },
-      { week: 11, title: "Role-play Advanced", lessons: ["Job interview", "Negotiation", "Conflict resolution"] },
-      { week: 12, title: "Final Assessment", lessons: ["Full discussion test", "Presentation", "AI band feedback"] },
-    ],
-  },
-  {
-    id: 4,
-    title: "Luyện phát âm chuẩn",
-    level: "All levels",
-    description: "AI phân tích và chỉnh sửa phát âm theo thời gian thực.",
-    longDescription:
-      "Tập trung sửa phát âm, ngữ điệu và nhịp điệu. AI nghe bạn nói, so sánh với native và chỉ ra lỗi cần sửa từng âm.",
-    lessons: 48,
-    duration: "8 tuần",
-    weeks: 8,
-    color: "from-violet-500 to-indigo-400",
-    badge: "AI",
-    icon: "🎤",
-    phase: "Song song • Mọi giai đoạn",
-    features: [
-      "Phân tích phát âm real-time",
-      "So sánh với native speaker",
-      "Luyện âm khó (th, r, l, ʃ...)",
-      "48 bài + kiểm tra định kỳ",
-      "Theo dõi cải thiện rõ rệt",
-    ],
-    curriculum: [
-      { week: 1, title: "Vowels", lessons: ["Short vowels", "Long vowels", "Minimal pairs"] },
-      { week: 2, title: "Consonants khó", lessons: ["/θ/ /ð/", "/r/ /l/", "/ʃ/ /tʃ/"] },
-      { week: 3, title: "Word Stress", lessons: ["Stress patterns", "Compound nouns", "Verb-noun pairs"] },
-      { week: 4, title: "Sentence Stress", lessons: ["Content vs function words", "Emphasis", "Rhythm"] },
-      { week: 5, title: "Intonation", lessons: ["Rising/falling", "Questions", "Lists & choices"] },
-      { week: 6, title: "Linking & Connected Speech", lessons: ["Linking sounds", "Elision", "Assimilation"] },
-      { week: 7, title: "Shadowing Practice", lessons: ["Short dialogues", "News clips", "Movie scenes"] },
-      { week: 8, title: "Assessment", lessons: ["Full pronunciation test", "AI score", "Personal improvement plan"] },
-    ],
-  },
-  {
-    id: 5,
-    title: "Luyện nghe tiếng Anh",
-    level: "Intermediate",
-    description: "Nghe hội thoại, xem video, luyện phản xạ với AI.",
-    longDescription:
-      "Rèn khả năng nghe hiểu và phản xạ nhanh. Kết hợp nghe hội thoại, video ngắn và trả lời câu hỏi / nói lại với AI.",
-    lessons: 48,
-    duration: "8 tuần",
-    weeks: 8,
-    color: "from-teal-500 to-emerald-400",
-    badge: "Nghe",
-    icon: "🎧",
-    phase: "Giai đoạn 4 • Tháng 7–8",
-    features: [
-      "Nghe hội thoại thực tế",
-      "Luyện phản xạ với AI",
-      "48 bài + quiz nghe hiểu",
-      "Tốc độ từ chậm → nhanh",
-      "Transcript & giải thích",
-    ],
-    curriculum: [
-      { week: 1, title: "Daily Conversations", lessons: ["Greetings & small talk", "Shopping", "Directions"] },
-      { week: 2, title: "Phone & Online", lessons: ["Phone calls", "Video calls", "Voicemail"] },
-      { week: 3, title: "Stories & Narratives", lessons: ["Short stories", "News summaries", "Anecdotes"] },
-      { week: 4, title: "Opinions & Discussions", lessons: ["Interviews", "Podcasts", "Debates"] },
-      { week: 5, title: "Accents Exposure", lessons: ["American", "British", "Other accents"] },
-      { week: 6, title: "Fast Speech", lessons: ["Connected speech", "Reduced forms", "Speed drills"] },
-      { week: 7, title: "Video Comprehension", lessons: ["YouTube clips", "Movie scenes", "TED-style talks"] },
-      { week: 8, title: "Listening Test", lessons: ["Full practice test", "AI feedback", "Weak points report"] },
-    ],
-  },
-  {
-    id: 6,
-    title: "Ngữ pháp & Từ vựng",
-    level: "Intermediate",
-    description: "Hệ thống ngữ pháp và mở rộng từ vựng theo chủ đề.",
-    longDescription:
-      "Củng cố ngữ pháp quan trọng và mở rộng vốn từ theo chủ đề. Kết hợp bài tập + giải thích của AI khi bạn mắc lỗi.",
-    lessons: 72,
-    duration: "12 tuần",
-    weeks: 12,
-    color: "from-amber-500 to-orange-400",
-    badge: "Nền tảng vững",
-    icon: "📚",
-    phase: "Song song • Tháng 1–10",
-    features: [
-      "Ngữ pháp có hệ thống",
-      "Từ vựng theo chủ đề",
-      "72 bài + bài tập",
-      "AI giải thích lỗi sai",
-      "Ôn tập theo khoảng cách",
-    ],
-    curriculum: [
-      { week: 1, title: "Tenses Review", lessons: ["Present simple/continuous", "Past simple", "Present perfect"] },
-      { week: 2, title: "Future Forms", lessons: ["Will / Going to", "Present continuous future", "Future perfect"] },
-      { week: 3, title: "Modals", lessons: ["Can/Could/May", "Must/Have to", "Should/Ought to"] },
-      { week: 4, title: "Conditionals", lessons: ["Zero & First", "Second conditional", "Third & mixed"] },
-      { week: 5, title: "Passive Voice", lessons: ["Present & Past passive", "Perfect passive", "Usage"] },
-      { week: 6, title: "Reported Speech", lessons: ["Statements", "Questions", "Requests & orders"] },
-      { week: 7, title: "Relative Clauses", lessons: ["Defining", "Non-defining", "Reduced clauses"] },
-      { week: 8, title: "Vocabulary: Daily Life", lessons: ["Home & family", "Work", "Health"] },
-      { week: 9, title: "Vocabulary: Society", lessons: ["Education", "Environment", "Technology"] },
-      { week: 10, title: "Collocations & Phrasal Verbs", lessons: ["Common collocations", "Phrasal verbs 1", "Phrasal verbs 2"] },
-      { week: 11, title: "Writing Practice", lessons: ["Paragraph structure", "Linking words", "Short essays"] },
-      { week: 12, title: "Review & Test", lessons: ["Grammar test", "Vocabulary test", "AI error analysis"] },
-    ],
-  },
-  {
-    id: 7,
-    title: "Tiếng Anh học thuật",
-    level: "Upper-Intermediate",
-    description: "Đọc hiểu, viết đoạn văn, thuyết trình, từ vựng học thuật.",
-    longDescription:
-      "Chuẩn bị dùng tiếng Anh trong học tập và môi trường chuyên nghiệp: đọc hiểu, viết đoạn văn, thuyết trình và từ vựng học thuật.",
-    lessons: 72,
-    duration: "12 tuần",
-    weeks: 12,
-    color: "from-indigo-500 to-blue-500",
-    badge: "Học thuật",
-    icon: "🎓",
-    phase: "Giai đoạn 5 • Tháng 9–10",
-    features: [
-      "Đọc hiểu & viết đoạn văn",
-      "Thuyết trình học thuật",
-      "Từ vựng academic",
-      "72 bài + bài tập viết",
-      "AI chấm và góp ý chi tiết",
-    ],
-    curriculum: [
-      { week: 1, title: "Academic Vocabulary", lessons: ["Word families", "Formal vs informal", "Hedging language"] },
-      { week: 2, title: "Reading Skills", lessons: ["Skimming & scanning", "Main idea", "Inference"] },
-      { week: 3, title: "Paragraph Writing", lessons: ["Topic sentence", "Supporting details", "Coherence"] },
-      { week: 4, title: "Essay Structure", lessons: ["Introduction", "Body paragraphs", "Conclusion"] },
-      { week: 5, title: "Opinion Essays", lessons: ["Agree/Disagree", "Advantages/Disadvantages", "Discussion"] },
-      { week: 6, title: "Presentation Skills", lessons: ["Opening", "Signposting", "Visuals & Q&A"] },
-      { week: 7, title: "Note-taking & Summarizing", lessons: ["Listening notes", "Summary writing", "Paraphrasing"] },
-      { week: 8, title: "Data Description", lessons: ["Graphs & charts", "Trends language", "Comparisons"] },
-      { week: 9, title: "Critical Thinking", lessons: ["Evaluating arguments", "Evidence", "Counter-arguments"] },
-      { week: 10, title: "Research Basics", lessons: ["Sources", "Citing ideas", "Avoiding plagiarism"] },
-      { week: 11, title: "Full Presentation", lessons: ["Prepare talk", "Deliver with AI feedback", "Peer-style review"] },
-      { week: 12, title: "Final Project", lessons: ["Written essay", "Oral presentation", "Overall assessment"] },
-    ],
-  },
-  {
-    id: 8,
-    title: "IELTS Speaking",
-    level: "Advanced",
-    description: "Luyện Speaking Part 1-2-3 với AI chấm điểm và góp ý chi tiết.",
-    longDescription:
-      "Khóa chuyên sâu IELTS Speaking. AI chấm theo 4 tiêu chí (Fluency, Lexical, Grammar, Pronunciation), chỉ ra lỗi và cách cải thiện để tăng band.",
-    lessons: 96,
-    duration: "16 tuần",
-    weeks: 16,
-    color: "from-emerald-500 to-teal-400",
-    badge: "IELTS",
-    icon: "🎯",
-    phase: "Giai đoạn 6 • Tháng 11–12",
-    features: [
-      "Chấm điểm theo 4 tiêu chí IELTS",
-      "Part 1 – 2 – 3 đầy đủ",
-      "96 bài + nhiều mock test",
-      "Feedback chi tiết từng band",
-      "Chiến lược tăng điểm rõ ràng",
-    ],
-    curriculum: [
-      { week: 1, title: "Part 1 Foundations", lessons: ["Common topics", "Extending answers", "Fluency tips"] },
-      { week: 2, title: "Part 1 Practice", lessons: ["Home & hometown", "Work/Study", "Free time"] },
-      { week: 3, title: "Part 2 Structure", lessons: ["Cue card strategy", "1-minute prep", "2-minute talk"] },
-      { week: 4, title: "Part 2 Practice A", lessons: ["People", "Places", "Objects"] },
-      { week: 5, title: "Part 2 Practice B", lessons: ["Events", "Experiences", "Future plans"] },
-      { week: 6, title: "Part 3 Skills", lessons: ["Opinion & reasons", "Comparing", "Speculating"] },
-      { week: 7, title: "Part 3 Practice", lessons: ["Society", "Education", "Technology"] },
-      { week: 8, title: "Vocabulary for Band 7+", lessons: ["Topic vocabulary", "Collocations", "Less common words"] },
-      { week: 9, title: "Grammar for Speaking", lessons: ["Complex structures", "Tense control", "Error correction"] },
-      { week: 10, title: "Pronunciation for IELTS", lessons: ["Clarity", "Stress & intonation", "Chunking"] },
-      { week: 11, title: "Mock Test 1", lessons: ["Full test", "AI band score", "Weak areas"] },
-      { week: 12, title: "Mock Test 2", lessons: ["Full test", "Comparison with Test 1", "Focus drills"] },
-      { week: 13, title: "Advanced Strategies", lessons: ["Paraphrasing", "Idea generation", "Time management"] },
-      { week: 14, title: "Difficult Topics", lessons: ["Abstract topics", "Unfamiliar subjects", "Recovery techniques"] },
-      { week: 15, title: "Final Mocks", lessons: ["Mock 3", "Mock 4", "Score tracking"] },
-      { week: 16, title: "Exam Ready", lessons: ["Last review", "Mindset & tips", "Final assessment"] },
-    ],
-  },
-];
+export default async function CourseDetailPage({ params }: Props) {
+  const { id } = await params;
+  const course = getCourseById(Number(id));
 
-export function getCourseById(id: number) {
-  return courses.find((c) => c.id === id);
+  if (!course) {
+    notFound();
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      <header className="border-b border-slate-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+        <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+          <Link
+            href="/khoahoc"
+            className="flex items-center gap-2 text-blue-600 font-medium hover:underline"
+          >
+            ← Quay lại khóa học
+          </Link>
+          <Link href="/" className="text-sm text-slate-600 hover:text-blue-600">
+            Trang chủ
+          </Link>
+        </div>
+      </header>
+
+      <section className="max-w-5xl mx-auto px-4 pt-12 pb-8">
+        <div className="flex flex-col md:flex-row gap-8 items-start">
+          <div className="flex-1">
+            <div className="text-xs font-medium text-blue-600 mb-2">
+              {course.phase}
+            </div>
+
+            <div className="flex items-center gap-3 mb-3">
+              <span className="text-sm font-medium text-slate-400">
+                {course.level}
+              </span>
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-600">
+                {course.badge}
+              </span>
+            </div>
+
+            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+              {course.title}
+            </h1>
+
+            <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+              {course.longDescription}
+            </p>
+
+            <div className="flex flex-wrap gap-5 text-sm text-slate-500 mb-8">
+              <span>📖 {course.lessons} bài học</span>
+              <span>⏱️ {course.duration}</span>
+              <span>🤖 AI đồng hành</span>
+            </div>
+
+            <button className="px-8 py-3.5 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-700 transition shadow-lg shadow-blue-200">
+              Bắt đầu học ngay
+            </button>
+          </div>
+
+          <div
+            className={`w-full md:w-48 h-48 rounded-3xl bg-gradient-to-br ${course.color} flex items-center justify-center text-6xl shadow-xl shrink-0`}
+          >
+            {course.icon}
+          </div>
+        </div>
+      </section>
+
+      <section className="max-w-5xl mx-auto px-4 pb-20 grid md:grid-cols-3 gap-10">
+        <div className="md:col-span-2 space-y-10">
+          <div>
+            <h2 className="text-xl font-bold text-slate-900 mb-5">
+              Bạn sẽ nhận được gì?
+            </h2>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {course.features.map((feature) => (
+                <div
+                  key={feature}
+                  className="flex items-start gap-3 bg-white rounded-2xl p-4 border border-slate-100"
+                >
+                  <span className="text-green-500 mt-0.5">✓</span>
+                  <span className="text-slate-700 text-sm">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-bold text-slate-900 mb-5">
+              Lộ trình học
+            </h2>
+            <div className="space-y-4">
+              {course.curriculum.map((week) => (
+                <div
+                  key={week.week}
+                  className="bg-white rounded-2xl border border-slate-100 p-5"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="w-8 h-8 rounded-full bg-blue-100 text-blue-600 text-sm font-bold flex items-center justify-center">
+                      {week.week}
+                    </span>
+                    <h3 className="font-semibold text-slate-900">
+                      {week.title}
+                    </h3>
+                  </div>
+                  <ul className="space-y-1.5 ml-11">
+                    {week.lessons.map((lesson) => (
+                      <li
+                        key={lesson}
+                        className="text-sm text-slate-600 flex items-center gap-2"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-slate-300" />
+                        {lesson}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div className="bg-white rounded-3xl border border-slate-100 p-6 sticky top-24">
+            <h3 className="font-bold text-slate-900 mb-4">Thông tin khóa học</h3>
+            <div className="space-y-3 text-sm text-slate-600 mb-6">
+              <div className="flex justify-between">
+                <span>Số bài học</span>
+                <span className="font-medium text-slate-900">
+                  {course.lessons}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span>Thời lượng</span>
+                <span className="font-medium text-slate-900">
+                  {course.duration}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span>Trình độ</span>
+                <span className="font-medium text-slate-900">{course.level}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>AI hỗ trợ</span>
+                <span className="font-medium text-green-600">Có</span>
+              </div>
+            </div>
+
+            <button className="w-full py-3 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-700 transition">
+              Bắt đầu học ngay
+            </button>
+            <p className="text-center text-xs text-slate-400 mt-3">
+              Miễn phí • Không cần thẻ tín dụng
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }
