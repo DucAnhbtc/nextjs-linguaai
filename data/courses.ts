@@ -1,1 +1,211 @@
+export type Course = {
+  id: number;
+  title: string;
+  level: string;
+  description: string;
+  longDescription: string;
+  lessons: number;
+  duration: string;
+  weeks: number;
+  color: string;
+  badge: string;
+  icon: string;
+  phase: string;
+  features: string[];
+  curriculum: { week: number; title: string; lessons: string[] }[];
+};
 
+export const courses: Course[] = [
+  {
+    id: 1,
+    title: "Tiếng Anh từ mất gốc",
+    level: "Beginner",
+    description: "Xây nền tảng từ vựng, ngữ pháp, phát âm và câu giao tiếp cơ bản.",
+    longDescription:
+      "Khóa học dành cho người mất gốc. Tập trung từ vựng thiết yếu, ngữ pháp căn bản, phát âm chuẩn và các mẫu câu giao tiếp đơn giản. AI sẽ sửa lỗi ngay khi bạn nói.",
+    lessons: 48,
+    duration: "8 tuần",
+    weeks: 8,
+    color: "from-sky-500 to-blue-400",
+    badge: "Nền tảng",
+    icon: "🌱",
+    phase: "Giai đoạn 1 • Tháng 1–2",
+    features: [
+      "Từ vựng & ngữ pháp căn bản",
+      "Luyện phát âm với AI",
+      "48 bài học + bài kiểm tra cuối tuần",
+      "Chuỗi ngày học liên tiếp (streak)",
+      "Theo dõi tiến độ rõ ràng",
+    ],
+    curriculum: [
+      { week: 1, title: "Chào hỏi & Số đếm", lessons: ["Hello & Goodbye", "Số từ 1–100", "Giới thiệu tên"] },
+      { week: 2, title: "Gia đình & Màu sắc", lessons: ["Từ vựng gia đình", "Màu sắc", "This/That"] },
+      { week: 3, title: "Thời gian & Ngày tháng", lessons: ["Days of the week", "Telling time", "Months"] },
+      { week: 4, title: "Động từ to be & Have", lessons: ["Am/Is/Are", "Have/Has", "Câu phủ định"] },
+      { week: 5, title: "Thức ăn & Đồ uống", lessons: ["Food vocabulary", "Ordering food", "Likes & Dislikes"] },
+      { week: 6, title: "Nơi chốn & Hướng dẫn", lessons: ["Places in town", "Asking for directions", "Prepositions"] },
+      { week: 7, title: "Công việc & Sở thích", lessons: ["Jobs", "Hobbies", "Can/Can't"] },
+      { week: 8, title: "Ôn tập & Kiểm tra", lessons: ["Review tuần 1–7", "Speaking test", "Final quiz"] },
+    ],
+  },
+  {
+    id: 2,
+    title: "Giao tiếp cơ bản",
+    level: "Beginner",
+    description: "Chào hỏi, giới thiệu, mua sắm, hỏi đường, du lịch – giao tiếp đời sống.",
+    longDescription:
+      "Sau khi có nền tảng, bạn sẽ luyện các tình huống giao tiếp thực tế: chào hỏi, giới thiệu, mua sắm, hỏi đường, đi du lịch. Mỗi ngày luyện nói với AI và nhận góp ý ngay.",
+    lessons: 48,
+    duration: "8 tuần",
+    weeks: 8,
+    color: "from-blue-500 to-cyan-400",
+    badge: "Phổ biến",
+    icon: "🗣️",
+    phase: "Giai đoạn 2 • Tháng 3–4",
+    features: [
+      "Tình huống đời sống thực tế",
+      "Luyện nói hàng ngày với AI",
+      "48 bài học + kiểm tra cuối tuần",
+      "Phản hồi phát âm & ngữ pháp",
+      "Mở khóa bài học theo tiến độ",
+    ],
+    curriculum: [
+      { week: 1, title: "Chào hỏi & Giới thiệu", lessons: ["Greetings", "Self-introduction", "Small talk"] },
+      { week: 2, title: "Mua sắm", lessons: ["At the store", "Asking price", "Bargaining"] },
+      { week: 3, title: "Hỏi đường", lessons: ["Directions", "Public transport", "Landmarks"] },
+      { week: 4, title: "Nhà hàng & Café", lessons: ["Ordering food", "Making requests", "Paying the bill"] },
+      { week: 5, title: "Du lịch", lessons: ["At the airport", "Hotel check-in", "Sightseeing"] },
+      { week: 6, title: "Sức khỏe & Khẩn cấp", lessons: ["At the doctor", "Describing symptoms", "Emergency"] },
+      { week: 7, title: "Bạn bè & Gia đình", lessons: ["Talking about family", "Making plans", "Invitations"] },
+      { week: 8, title: "Ôn tập & Role-play", lessons: ["Full conversation practice", "Role-play test", "Final assessment"] },
+    ],
+  },
+  {
+    id: 3,
+    title: "Giao tiếp nâng cao",
+    level: "Intermediate",
+    description: "Thảo luận, kể chuyện, trình bày ý kiến – nói tự nhiên hơn.",
+    longDescription:
+      "Khóa học giúp bạn nói dài hơn, tự tin hơn trong thảo luận, kể chuyện và trình bày ý kiến. Phù hợp người đã giao tiếp cơ bản và muốn lên mức tự nhiên.",
+    lessons: 72,
+    duration: "12 tuần",
+    weeks: 12,
+    color: "from-purple-500 to-pink-400",
+    badge: "Hot",
+    icon: "💼",
+    phase: "Giai đoạn 3 • Tháng 5–6",
+    features: [
+      "Thảo luận & trình bày ý kiến",
+      "Kể chuyện và storytelling",
+      "72 bài học chuyên sâu",
+      "Feedback fluency từ AI",
+      "Bài kiểm tra định kỳ",
+    ],
+    curriculum: [
+      { week: 1, title: "Expressing Opinions", lessons: ["I think / In my opinion", "Agree & Disagree", "Giving reasons"] },
+      { week: 2, title: "Storytelling", lessons: ["Past simple storytelling", "Sequencing words", "Describing events"] },
+      { week: 3, title: "Discussion Skills", lessons: ["Turn-taking", "Interrupting politely", "Summarizing"] },
+      { week: 4, title: "Work Conversations", lessons: ["Meetings", "Giving updates", "Asking for clarification"] },
+      { week: 5, title: "Describing People & Places", lessons: ["Appearance", "Personality", "Cities & Culture"] },
+      { week: 6, title: "Hypothetical Situations", lessons: ["If clauses", "Imagining future", "Advice"] },
+      { week: 7, title: "Debating Basics", lessons: ["Pros & Cons", "Supporting arguments", "Counter-arguments"] },
+      { week: 8, title: "Presentations", lessons: ["Structure", "Signposting language", "Q&A practice"] },
+      { week: 9, title: "Idioms & Natural Phrases", lessons: ["Common idioms", "Phrasal verbs", "Colloquial expressions"] },
+      { week: 10, title: "Fluency Drills", lessons: ["Timed speaking", "Paraphrasing", "Filler words reduction"] },
+      { week: 11, title: "Role-play Advanced", lessons: ["Job interview", "Negotiation", "Conflict resolution"] },
+      { week: 12, title: "Final Assessment", lessons: ["Full discussion test", "Presentation", "AI band feedback"] },
+    ],
+  },
+  {
+    id: 4,
+    title: "Luyện phát âm chuẩn",
+    level: "All levels",
+    description: "AI phân tích và chỉnh sửa phát âm theo thời gian thực.",
+    longDescription:
+      "Tập trung sửa phát âm, ngữ điệu và nhịp điệu. AI nghe bạn nói, so sánh với native và chỉ ra lỗi cần sửa từng âm.",
+    lessons: 48,
+    duration: "8 tuần",
+    weeks: 8,
+    color: "from-violet-500 to-indigo-400",
+    badge: "AI",
+    icon: "🎤",
+    phase: "Song song • Mọi giai đoạn",
+    features: [
+      "Phân tích phát âm real-time",
+      "So sánh với native speaker",
+      "Luyện âm khó (th, r, l, ʃ...)",
+      "48 bài + kiểm tra định kỳ",
+      "Theo dõi cải thiện rõ rệt",
+    ],
+    curriculum: [
+      { week: 1, title: "Vowels", lessons: ["Short vowels", "Long vowels", "Minimal pairs"] },
+      { week: 2, title: "Consonants khó", lessons: ["/θ/ /ð/", "/r/ /l/", "/ʃ/ /tʃ/"] },
+      { week: 3, title: "Word Stress", lessons: ["Stress patterns", "Compound nouns", "Verb-noun pairs"] },
+      { week: 4, title: "Sentence Stress", lessons: ["Content vs function words", "Emphasis", "Rhythm"] },
+      { week: 5, title: "Intonation", lessons: ["Rising/falling", "Questions", "Lists & choices"] },
+      { week: 6, title: "Linking & Connected Speech", lessons: ["Linking sounds", "Elision", "Assimilation"] },
+      { week: 7, title: "Shadowing Practice", lessons: ["Short dialogues", "News clips", "Movie scenes"] },
+      { week: 8, title: "Assessment", lessons: ["Full pronunciation test", "AI score", "Personal improvement plan"] },
+    ],
+  },
+  {
+    id: 5,
+    title: "Luyện nghe tiếng Anh",
+    level: "Intermediate",
+    description: "Nghe hội thoại, xem video, luyện phản xạ với AI.",
+    longDescription:
+      "Rèn khả năng nghe hiểu và phản xạ nhanh. Kết hợp nghe hội thoại, video ngắn và trả lời câu hỏi / nói lại với AI.",
+    lessons: 48,
+    duration: "8 tuần",
+    weeks: 8,
+    color: "from-teal-500 to-emerald-400",
+    badge: "Nghe",
+    icon: "🎧",
+    phase: "Giai đoạn 4 • Tháng 7–8",
+    features: [
+      "Nghe hội thoại thực tế",
+      "Luyện phản xạ với AI",
+      "48 bài + quiz nghe hiểu",
+      "Tốc độ từ chậm → nhanh",
+      "Transcript & giải thích",
+    ],
+    curriculum: [
+      { week: 1, title: "Daily Conversations", lessons: ["Greetings & small talk", "Shopping", "Directions"] },
+      { week: 2, title: "Phone & Online", lessons: ["Phone calls", "Video calls", "Voicemail"] },
+      { week: 3, title: "Stories & Narratives", lessons: ["Short stories", "News summaries", "Anecdotes"] },
+      { week: 4, title: "Opinions & Discussions", lessons: ["Interviews", "Podcasts", "Debates"] },
+      { week: 5, title: "Accents Exposure", lessons: ["American", "British", "Other accents"] },
+      { week: 6, title: "Fast Speech", lessons: ["Connected speech", "Reduced forms", "Speed drills"] },
+      { week: 7, title: "Video Comprehension", lessons: ["YouTube clips", "Movie scenes", "TED-style talks"] },
+      { week: 8, title: "Listening Test", lessons: ["Full practice test", "AI feedback", "Weak points report"] },
+    ],
+  },
+  {
+    id: 6,
+    title: "Ngữ pháp & Từ vựng",
+    level: "Intermediate",
+    description: "Hệ thống ngữ pháp và mở rộng từ vựng theo chủ đề.",
+    longDescription:
+      "Củng cố ngữ pháp quan trọng và mở rộng vốn từ theo chủ đề. Kết hợp bài tập + giải thích của AI khi bạn mắc lỗi.",
+    lessons: 72,
+    duration: "12 tuần",
+    weeks: 12,
+    color: "from-amber-500 to-orange-400",
+    badge: "Nền tảng vững",
+    icon: "📚",
+    phase: "Song song • Tháng 1–10",
+    features: [
+      "Ngữ pháp có hệ thống",
+      "Từ vựng theo chủ đề",
+      "72 bài + bài tập",
+      "AI giải thích lỗi sai",
+      "Ôn tập theo khoảng cách",
+    ],
+    curriculum: [
+      { week: 1, title: "Tenses Review", lessons: ["Present simple/continuous", "Past simple", "Present perfect"] },
+      { week: 2, title: "Future Forms", lessons: ["Will / Going to", "Present continuous future", "Future perfect"] },
+      { week: 3, title: "Modals", lessons: ["Can/Could/May", "Must/Have to", "Should/Ought to"] },
+      { week: 4, title: "Conditionals", lessons: ["Zero & First", "Second conditional", "Third & mixed"] },
+      { week: 5, title: "Passive Voice", lessons: ["Present & Past passive", "Perfect passive", "Usage"] },
+      { week: 6, title: "Reported Speech", lessons: ["Statements", "Questions", "Requests & orders"] },
+      { week: 7, title: "Relative Clauses", lessons: ["Defining", 
