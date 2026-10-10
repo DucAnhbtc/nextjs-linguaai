@@ -2,7 +2,7 @@ export type Question = {
   id: string;
   type: "multiple_choice" | "fill_blank" | "translate" | "reorder";
   question: string;
-  options?: string[];          // cho multiple_choice
+  options?: string[];           // cho multiple_choice
   correctAnswer: string | string[];
   explanation?: string;
 };
@@ -322,7 +322,6 @@ export const lessons: Lesson[] = [
 ];
 
 // Đồng bộ câu hỏi luyện tập vào content.practice để tương thích với giao diện hiện tại.
-// Dữ liệu gốc questions vẫn được giữ nguyên để không làm hỏng các component khác.
 lessons.forEach((lesson) => {
   lesson.content.practice = lesson.questions;
 });
