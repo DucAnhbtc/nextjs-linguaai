@@ -19,6 +19,7 @@ export type Lesson = {
     vocabulary?: { word: string; meaning: string; example: string; phonetic?: string }[];
     grammar?: { title: string; explanation: string; examples: string[] };
     dialogue?: { speaker: string; text: string }[];
+    practice?: Question[]; // tương thích với component đang dùng lesson.content.practice
   };
   questions: Question[];       // câu hỏi luyện tập trong bài
   miniTest: Question[];        // bài kiểm tra cuối bài
@@ -319,6 +320,12 @@ export const lessons: Lesson[] = [
     ],
   },
 ];
+
+// Đồng bộ câu hỏi luyện tập vào content.practice để tương thích với giao diện hiện tại.
+// Dữ liệu gốc questions vẫn được giữ nguyên để không làm hỏng các component khác.
+lessons.forEach((lesson) => {
+  lesson.content.practice = lesson.questions;
+});
 
 // ==================== HELPERS ====================
 export function getLessonsByCourseId(courseId: number) {
