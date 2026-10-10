@@ -194,3 +194,155 @@ export const lessons: Lesson[] = [
       {
         id: "q6",
         type: "multiple_choice",
+        question: "100 trong tiếng Anh là:",
+        options: ["one thousand", "one hundred", "one million", "ten"],
+        correctAnswer: "one hundred",
+      },
+    ],
+    miniTest: [
+      {
+        id: "t1",
+        type: "multiple_choice",
+        question: "Chọn số đúng cho “four”:",
+        options: ["3", "4", "5", "6"],
+        correctAnswer: "4",
+      },
+      {
+        id: "t2",
+        type: "fill_blank",
+        question: "She is _____ (3) years old.",
+        correctAnswer: "three",
+      },
+      {
+        id: "t3",
+        type: "multiple_choice",
+        question: "“Fifty” nghĩa là:",
+        options: ["15", "50", "55", "5"],
+        correctAnswer: "50",
+      },
+      {
+        id: "t4",
+        type: "translate",
+        question: "Dịch: “Hai mươi”",
+        correctAnswer: "twenty",
+      },
+      {
+        id: "t5",
+        type: "multiple_choice",
+        question: "I need _____ dollars. (10)",
+        options: ["two", "ten", "twenty", "one"],
+        correctAnswer: "ten",
+      },
+    ],
+  },
+  {
+    id: "1-1-3",
+    courseId: 1,
+    week: 1,
+    order: 3,
+    title: "Giới thiệu tên",
+    type: "speaking",
+    duration: 20,
+    content: {
+      dialogue: [
+        { speaker: "A", text: "Hello! What's your name?" },
+        { speaker: "B", text: "My name is Minh. What's your name?" },
+        { speaker: "A", text: "I'm Lan. Nice to meet you." },
+        { speaker: "B", text: "Nice to meet you too!" },
+      ],
+      vocabulary: [
+        { word: "What's your name?", meaning: "Bạn tên gì?", example: "What's your name?", phonetic: "/wɒts jɔːr neɪm/" },
+        { word: "My name is...", meaning: "Tên tôi là...", example: "My name is Minh.", phonetic: "/maɪ neɪm ɪz/" },
+        { word: "I'm...", meaning: "Tôi là...", example: "I'm Lan.", phonetic: "/aɪm/" },
+        { word: "Nice to meet you", meaning: "Rất vui được gặp bạn", example: "Nice to meet you!", phonetic: "/naɪs tuː miːt juː/" },
+      ],
+    },
+    questions: [
+      {
+        id: "q1",
+        type: "multiple_choice",
+        question: "Cách hỏi tên người khác:",
+        options: ["How are you?", "What's your name?", "Where are you from?", "How old are you?"],
+        correctAnswer: "What's your name?",
+      },
+      {
+        id: "q2",
+        type: "multiple_choice",
+        question: "“Nice to meet you” nghĩa là:",
+        options: ["Tạm biệt", "Xin chào", "Rất vui được gặp bạn", "Cảm ơn"],
+        correctAnswer: "Rất vui được gặp bạn",
+      },
+      {
+        id: "q3",
+        type: "fill_blank",
+        question: "Điền: My _____ is Nam.",
+        correctAnswer: "name",
+      },
+      {
+        id: "q4",
+        type: "translate",
+        question: "Dịch: “Tôi là Lan”",
+        correctAnswer: "I'm Lan",
+      },
+      {
+        id: "q5",
+        type: "multiple_choice",
+        question: "Khi được giới thiệu, bạn đáp lại:",
+        options: ["Goodbye", "Nice to meet you too", "Good morning", "See you"],
+        correctAnswer: "Nice to meet you too",
+      },
+    ],
+    miniTest: [
+      {
+        id: "t1",
+        type: "multiple_choice",
+        question: "“What's your name?” dùng để:",
+        options: ["Hỏi tuổi", "Hỏi tên", "Hỏi quê quán", "Tạm biệt"],
+        correctAnswer: "Hỏi tên",
+      },
+      {
+        id: "t2",
+        type: "fill_blank",
+        question: "_____ to meet you!",
+        correctAnswer: "Nice",
+      },
+      {
+        id: "t3",
+        type: "translate",
+        question: "Dịch: “Tên tôi là Minh”",
+        correctAnswer: "My name is Minh",
+      },
+      {
+        id: "t4",
+        type: "multiple_choice",
+        question: "Chọn câu đúng:",
+        options: ["My name Minh", "I name is Minh", "My name is Minh", "Name my is Minh"],
+        correctAnswer: "My name is Minh",
+      },
+      {
+        id: "t5",
+        type: "multiple_choice",
+        question: "Khi người khác nói “Nice to meet you”, bạn nói:",
+        options: ["Hello", "Nice to meet you too", "Goodbye", "Thank you"],
+        correctAnswer: "Nice to meet you too",
+      },
+    ],
+  },
+];
+
+// Đồng bộ practice
+lessons.forEach((lesson) => {
+  lesson.content.practice = lesson.questions;
+});
+
+export function getLessonsByCourseId(courseId: number) {
+  return lessons.filter((l) => l.courseId === courseId);
+}
+
+export function getLessonById(id: string) {
+  return lessons.find((l) => l.id === id);
+}
+
+export function getLessonsByWeek(courseId: number, week: number) {
+  return lessons.filter((l) => l.courseId === courseId && l.week === week);
+}
