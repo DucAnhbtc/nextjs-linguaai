@@ -152,13 +152,13 @@ export default async function LessonPage({ params }: Props) {
               <div className="space-y-3">
                 {lesson.content.practice.map((task, index) => (
                   <div
-                    key={index}
+                    key={task.id || index}
                     className="flex items-start gap-3 p-3 rounded-xl bg-amber-50 border border-amber-100"
                   >
                     <span className="w-6 h-6 rounded-full bg-amber-200 text-amber-800 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
                       {index + 1}
                     </span>
-                    <span className="text-slate-700">{task}</span>
+                    <span className="text-slate-700">{task.question}</span>
                   </div>
                 ))}
               </div>
