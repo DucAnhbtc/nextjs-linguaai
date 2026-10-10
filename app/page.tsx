@@ -59,7 +59,7 @@ export default function Home() {
 
           <div className="flex flex-wrap gap-4">
             <button className="bg-blue-600 text-white px-7 py-3.5 rounded-full font-medium hover:bg-blue-700 transition flex items-center gap-2">
-              🚀 Học thử miễn phí 🚀
+              🚀 Bắt đầu học ngay 🚀
             </button>
 
             {/* Nút này giờ đã nhấn được */}
