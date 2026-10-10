@@ -1,52 +1,9 @@
 import Link from "next/link";
-
-const courses = [
-  {
-    id: 1,
-    title: "Giao tiếp cơ bản",
-    level: "Beginner",
-    description: "Học các mẫu câu giao tiếp hàng ngày, chào hỏi, giới thiệu bản thân.",
-    lessons: 24,
-    duration: "4 tuần",
-    color: "from-blue-500 to-cyan-400",
-    badge: "Phổ biến",
-  },
-  {
-    id: 2,
-    title: "Giao tiếp nâng cao",
-    level: "Intermediate",
-    description: "Luyện nói tự tin trong công việc, thuyết trình và thảo luận nhóm.",
-    lessons: 32,
-    duration: "6 tuần",
-    color: "from-purple-500 to-pink-400",
-    badge: "Hot",
-  },
-  {
-    id: 3,
-    title: "Luyện phát âm chuẩn",
-    level: "All levels",
-    description: "AI phân tích và chỉnh sửa phát âm theo thời gian thực.",
-    lessons: 18,
-    duration: "3 tuần",
-    color: "from-violet-500 to-indigo-400",
-    badge: "AI",
-  },
-  {
-    id: 4,
-    title: "IELTS Speaking",
-    level: "Advanced",
-    description: "Luyện Speaking Part 1-2-3 với AI chấm điểm và góp ý chi tiết.",
-    lessons: 40,
-    duration: "8 tuần",
-    color: "from-emerald-500 to-teal-400",
-    badge: "Mới",
-  },
-];
+import { courses } from "@/data/courses";
 
 export default function KhoaHocPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      {/* Header */}
       <header className="border-b border-slate-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
@@ -55,7 +12,6 @@ export default function KhoaHocPage() {
             </div>
             <span className="text-xl font-bold text-slate-800">LinguaAI</span>
           </Link>
-
           <Link
             href="/"
             className="px-5 py-2.5 rounded-full bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition"
@@ -65,26 +21,25 @@ export default function KhoaHocPage() {
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="max-w-6xl mx-auto px-4 pt-16 pb-12 text-center">
+      <section className="max-w-6xl mx-auto px-4 pt-16 pb-10 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-sm font-medium mb-6">
-          <span>📚</span>
-          <span>Khóa học được thiết kế bởi AI</span>
+          <span>📅</span>
+          <span>Lộ trình 12 tháng • Từ mất gốc đến giao tiếp thành thạo</span>
         </div>
 
         <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-          Chọn khóa học phù hợp với{" "}
+          Chọn khóa học theo{" "}
           <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            trình độ của bạn
+            lộ trình của bạn
           </span>
         </h1>
 
         <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-          Tất cả khóa học đều có AI đồng hành, luyện nói thực tế và nhận góp ý ngay lập tức.
+          8 khóa học có thể học song song. Tổng thời gian khoảng 12 tháng tùy
+          trình độ và thời gian học mỗi ngày (khuyến nghị 2 giờ/ngày).
         </p>
       </section>
 
-      {/* Danh sách khóa học */}
       <section className="max-w-6xl mx-auto px-4 pb-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {courses.map((course) => (
@@ -99,12 +54,13 @@ export default function KhoaHocPage() {
               </div>
 
               <div
-                className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${course.color} flex items-center justify-center text-white text-2xl mb-5`}
+                className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${course.color} flex items-center justify-center text-white text-2xl mb-4`}
               >
-                {course.id === 1 && "🗣️"}
-                {course.id === 2 && "💼"}
-                {course.id === 3 && "🎤"}
-                {course.id === 4 && "🎯"}
+                {course.icon}
+              </div>
+
+              <div className="text-xs font-medium text-blue-600 mb-1">
+                {course.phase}
               </div>
 
               <div className="mb-1">
@@ -117,17 +73,13 @@ export default function KhoaHocPage() {
                 {course.title}
               </h3>
 
-              <p className="text-slate-600 text-sm mb-6 leading-relaxed">
+              <p className="text-slate-600 text-sm mb-5 leading-relaxed">
                 {course.description}
               </p>
 
               <div className="flex items-center gap-4 text-sm text-slate-500 mb-6">
-                <span className="flex items-center gap-1.5">
-                  📖 {course.lessons} bài học
-                </span>
-                <span className="flex items-center gap-1.5">
-                  ⏱️ {course.duration}
-                </span>
+                <span>📖 {course.lessons} bài học</span>
+                <span>⏱️ {course.duration}</span>
               </div>
 
               <Link
