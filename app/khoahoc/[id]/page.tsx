@@ -60,9 +60,12 @@ export default async function CourseDetailPage({ params }: Props) {
               <span>🤖 AI đồng hành</span>
             </div>
 
-            <button className="px-8 py-3.5 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-700 transition shadow-lg shadow-blue-200">
+            <Link
+              href={`/khoahoc/${course.id}/hoc`}
+              className="inline-block px-8 py-3.5 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-700 transition shadow-lg shadow-blue-200"
+            >
               Bắt đầu học ngay
-            </button>
+            </Link>
           </div>
 
           <div
@@ -153,9 +156,12 @@ export default async function CourseDetailPage({ params }: Props) {
               </div>
             </div>
 
-            <button className="w-full py-3 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-700 transition">
+            <Link
+              href={`/khoahoc/${course.id}/hoc`}
+              className="block w-full text-center py-3 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-700 transition"
+            >
               Bắt đầu học ngay
-            </button>
+            </Link>
             <p className="text-center text-xs text-slate-400 mt-3">
               Miễn phí • Không cần thẻ tín dụng
             </p>
