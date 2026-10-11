@@ -11,6 +11,7 @@ export default function Home() {
           </div>
           <span className="text-xl font-bold text-gray-800">LinguaAI</span>
         </div>
+
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
           <Link href="/" className="hover:text-blue-600">
             Trang chủ
@@ -25,12 +26,21 @@ export default function Home() {
             Về chúng tôi
           </a>
         </nav>
-        <Link
-          href="/khoahoc"
-          className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:opacity-90 transition"
-        >
-          Bắt đầu học →
-        </Link>
+
+        <div className="flex items-center gap-3">
+          <Link
+            href="/dangnhap"
+            className="text-sm font-medium text-gray-700 hover:text-blue-600 px-4 py-2"
+          >
+            Đăng nhập
+          </Link>
+          <Link
+            href="/dangky"
+            className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:opacity-90 transition"
+          >
+            Đăng ký
+          </Link>
+        </div>
       </header>
 
       {/* Hero Section */}
@@ -39,6 +49,7 @@ export default function Home() {
           <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
             <span>✨</span> AI đồng hành cùng bạn
           </div>
+
           <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
             Học tiếng Anh <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
@@ -47,10 +58,12 @@ export default function Home() {
             <br />
             cùng LinguaAI
           </h1>
+
           <p className="text-lg text-gray-600 mb-8 max-w-lg">
             Luyện nói thực tế, được AI góp ý ngay lập tức.
             Bắt đầu miễn phí – nâng cấp khi cần.
           </p>
+
           <div className="flex flex-wrap gap-4">
             <Link
               href="/khoahoc"
@@ -65,6 +78,7 @@ export default function Home() {
               ▶ Xem khóa học
             </Link>
           </div>
+
           <div className="flex flex-wrap gap-6 mt-10 text-sm text-gray-600">
             <div className="flex items-center gap-2">
               <span className="text-blue-500">⚡</span> Luyện nói AI
@@ -77,6 +91,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+
         <div className="relative flex justify-center">
           <div className="w-80 h-80 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full flex items-center justify-center relative">
             <div className="text-8xl">🤖</div>
@@ -105,6 +120,7 @@ export default function Home() {
               Luyện phát âm, giao tiếp trong các tình huống thực tế.
             </p>
           </div>
+
           <div className="bg-gray-50 rounded-2xl p-6 hover:shadow-md transition">
             <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-2xl mb-4">
               🧠
@@ -114,6 +130,7 @@ export default function Home() {
               Hiểu trình độ và nhu cầu học của bạn.
             </p>
           </div>
+
           <div className="bg-gray-50 rounded-2xl p-6 hover:shadow-md transition">
             <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-2xl mb-4">
               📊
@@ -123,6 +140,7 @@ export default function Home() {
               Theo dõi kết quả học tập mỗi ngày.
             </p>
           </div>
+
           <div className="bg-gray-50 rounded-2xl p-6 hover:shadow-md transition">
             <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center text-2xl mb-4">
               ❤️
