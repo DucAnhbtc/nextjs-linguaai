@@ -42,9 +42,9 @@ export default function DangNhap() {
               <input type="checkbox" className="rounded" />
               <span className="text-gray-600">Ghi nhớ đăng nhập</span>
             </label>
-            <a href="#" className="text-blue-600 hover:underline">
+            <span className="text-blue-600 hover:underline cursor-pointer">
               Quên mật khẩu?
-            </a>
+            </span>
           </div>
 
           <button
