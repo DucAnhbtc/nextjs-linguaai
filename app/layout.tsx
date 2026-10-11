@@ -26,7 +26,6 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* Header dùng chung cho mọi trang */}
         <header className="flex items-center justify-between px-8 py-5 max-w-7xl mx-auto">
           <Link href="/" className="flex items-center gap-2">
             <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
