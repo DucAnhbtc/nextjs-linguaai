@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function DangNhap() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center px-4">
@@ -7,12 +9,16 @@ export default function DangNhap() {
             L
           </div>
           <h1 className="text-2xl font-bold">Đăng nhập</h1>
-          <p className="text-gray-500 text-sm mt-1">Chào mừng bạn quay lại LinguaAI</p>
+          <p className="text-gray-500 text-sm mt-1">
+            Chào mừng bạn quay lại LinguaAI
+          </p>
         </div>
 
         <form className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email
+            </label>
             <input
               type="email"
               placeholder="you@example.com"
@@ -21,7 +27,9 @@ export default function DangNhap() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Mật khẩu</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Mật khẩu
+            </label>
             <input
               type="password"
               placeholder="••••••••"
@@ -34,7 +42,9 @@ export default function DangNhap() {
               <input type="checkbox" className="rounded" />
               <span className="text-gray-600">Ghi nhớ đăng nhập</span>
             </label>
-            <a href="#" className="text-blue-600 hover:underline">Quên mật khẩu?</a>
+            <a href="#" className="text-blue-600 hover:underline">
+              Quên mật khẩu?
+            </a>
           </div>
 
           <button
@@ -47,15 +57,18 @@ export default function DangNhap() {
 
         <p className="text-center text-sm text-gray-600 mt-6">
           Chưa có tài khoản?{" "}
-          <a href="/dangky" className="text-blue-600 font-medium hover:underline">
+          <Link
+            href="/dangky"
+            className="text-blue-600 font-medium hover:underline"
+          >
             Đăng ký ngay
-          </a>
+          </Link>
         </p>
 
         <div className="mt-6 text-center">
-          <a href="/" className="text-sm text-gray-500 hover:underline">
+          <Link href="/" className="text-sm text-gray-500 hover:underline">
             ← Về trang chủ
-          </a>
+          </Link>
         </div>
       </div>
     </main>
