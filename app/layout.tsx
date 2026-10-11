@@ -42,12 +42,12 @@ export default function RootLayout({
             <Link href="/khoahoc" className="hover:text-blue-600">
               Khóa học
             </Link>
-            <a href="/#tinhnang" className="hover:text-blue-600">
+            <Link href="/#tinhnang" className="hover:text-blue-600">
               Tính năng
-            </a>
-            <a href="/#vechungtoi" className="hover:text-blue-600">
+            </Link>
+            <Link href="/#vechungtoi" className="hover:text-blue-600">
               Về chúng tôi
-            </a>
+            </Link>
           </nav>
 
           <div className="flex items-center gap-3">
