@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function DangKy() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center px-4">
@@ -7,12 +9,16 @@ export default function DangKy() {
             L
           </div>
           <h1 className="text-2xl font-bold">Đăng ký tài khoản</h1>
-          <p className="text-gray-500 text-sm mt-1">Bắt đầu học tiếng Anh miễn phí với AI</p>
+          <p className="text-gray-500 text-sm mt-1">
+            Bắt đầu học tiếng Anh miễn phí với AI
+          </p>
         </div>
 
         <form className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Họ và tên</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Họ và tên
+            </label>
             <input
               type="text"
               placeholder="Nguyễn Văn A"
@@ -21,7 +27,9 @@ export default function DangKy() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email
+            </label>
             <input
               type="email"
               placeholder="you@example.com"
@@ -30,7 +38,9 @@ export default function DangKy() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Mật khẩu</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Mật khẩu
+            </label>
             <input
               type="password"
               placeholder="Tối thiểu 6 ký tự"
@@ -39,7 +49,9 @@ export default function DangKy() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Xác nhận mật khẩu</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Xác nhận mật khẩu
+            </label>
             <input
               type="password"
               placeholder="Nhập lại mật khẩu"
@@ -57,15 +69,18 @@ export default function DangKy() {
 
         <p className="text-center text-sm text-gray-600 mt-6">
           Đã có tài khoản?{" "}
-          <a href="/dangnhap" className="text-blue-600 font-medium hover:underline">
+          <Link
+            href="/dangnhap"
+            className="text-blue-600 font-medium hover:underline"
+          >
             Đăng nhập
-          </a>
+          </Link>
         </p>
 
         <div className="mt-6 text-center">
-          <a href="/" className="text-sm text-gray-500 hover:underline">
+          <Link href="/" className="text-sm text-gray-500 hover:underline">
             ← Về trang chủ
-          </a>
+          </Link>
         </div>
       </div>
     </main>
