@@ -3,46 +3,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white text-gray-900">
-      {/* Header */}
-      <header className="flex items-center justify-between px-8 py-5 max-w-7xl mx-auto">
-        <div className="flex items-center gap-2">
-          <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
-            L
-          </div>
-          <span className="text-xl font-bold text-gray-800">LinguaAI</span>
-        </div>
-
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-          <Link href="/" className="hover:text-blue-600">
-            Trang chủ
-          </Link>
-          <Link href="/khoahoc" className="hover:text-blue-600">
-            Khóa học
-          </Link>
-          <a href="#tinhnang" className="hover:text-blue-600">
-            Tính năng
-          </a>
-          <a href="#vechungtoi" className="hover:text-blue-600">
-            Về chúng tôi
-          </a>
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <Link
-            href="/dangnhap"
-            className="text-sm font-medium text-gray-700 hover:text-blue-600 px-4 py-2"
-          >
-            Đăng nhập
-          </Link>
-          <Link
-            href="/dangky"
-            className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:opacity-90 transition"
-          >
-            Đăng ký
-          </Link>
-        </div>
-      </header>
-
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-8 pt-16 pb-20 grid md:grid-cols-2 gap-12 items-center">
         <div>
